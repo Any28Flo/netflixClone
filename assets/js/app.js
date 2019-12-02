@@ -4,11 +4,13 @@ let imageArray  = [
         {"src":"./assets/img/profile.png"}
 
 ]
+
 class User{
     constructor(name, nickName, profilePicture){
         this.name = name ;
         this.nickName = nickName;
         this.profilePicture = profilePicture;
+        this.preferences  = ["action", "horror", "suspense"];
     }
     printName(){
 
@@ -16,10 +18,8 @@ class User{
     }
 }
 //functions
-function printProfiles(){
-    document.createElement(div);
-    
-}
+
+
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     let html = '';
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
  // Add all the divs to the HTML
- document.querySelector('.containerProfiles').innerHTML = html;
+// document.querySelector('.containerProfiles').innerHTML = html;
 })
 
 let user1 = new User( "Antonio" , "ant" , "./assets/profile.png");
@@ -46,4 +46,21 @@ arrayUsers.push(user2);
 
 arrayUsers.push(user3);
 
-console.log(arrayUsers);
+//console.log(arrayUsers);
+
+function createUser(){
+
+    let name= $("#nameUser");
+    let userName = name[0].value;
+    let nick = $("#nickName")
+    let nickName = nick[0].value;
+
+    console.log()
+   let newUser = new User(userName, nickName);
+   arrayUsers.push(newUser);
+}
+
+
+$( "#createUser" ).click(function() {
+    createUser();
+});
