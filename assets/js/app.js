@@ -26,14 +26,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     arrayUsers.forEach(user => {
        // var ruta= arregloImagenes[posicion].src;
 
-      html += `<div class="card col-md-4" data-card-name="${user.name}">`;
+      html += `<div class="card col-md-2" data-card-name="${user.name}">`;
       html += `<div class="card-text">${user.name}</div>`;
       html+= `<a href="netflix.html"><img  class="card-img-top" src =${imageArray[0].src}></a>`
       html += `</div>`;
     });
 
  // Add all the divs to the HTML
-//document.querySelector('.containerProfiles').innerHTML = html;
+document.querySelector('.containerProfiles').innerHTML = html;
 })
 
 let user1 = new User( "Antonio" , "ant" , "./assets/profile.png");
@@ -64,16 +64,21 @@ function createUser(){
 function listUsers(){
     let users = document.getElementById("users");
     let newUser;
-    arrayUsers.forEach(user =>{
+    arrayUsers.forEach((user,index) =>{
      newUser = document.createElement('div');
     newUser.classList.add('row');
     newUser.classList.add('newUSer');
+   
     newUser.innerHTML = `
-        <div class= "col-md-6">
+        <div class= "col-md-6 data=${index}">
         <div class="userName">Name: ${user.name}</div>
         <div class="nickName"> NickName: ${user.nickName}</div>
         <div>
             <button type='button' class='btn btn-danger btn-delete'>Delete</button>
+        </div>
+        <br>
+        <div>
+            <button type='button' class='btn btn-primary btn-update' data-toggle="modal" data-target="#exampleModal">Update</button>
         </div>
         </div>
     `;
@@ -96,19 +101,28 @@ function deleteItem(e){
     let user = buttonClicked.parentElement.parentElement.parentElement;
     userContainer.removeChild(user);
   };
+function updateItem(e){
+    console.log("Inside update");
+    let buttonClicked = e.currentTarget;
+    
+  };
+  
 $( "#createUser" ).click(function() {
     createUser();
 });
 
-$( "#updateUser" ).click(function() {
-   
-});
 
 listUsers();
 
-var deleteButtons = document.getElementsByClassName('btn-delete');
+let deleteButtons = document.getElementsByClassName('btn-delete');
 
-for(var i = 0; i<deleteButtons.length ; i++){
+for(let i = 0; i<deleteButtons.length ; i++){
     deleteButtons[i].onclick = deleteItem;
 
   };
+
+let updateButtons = document.getElementsByClassName('btn-update')
+
+for(let i = 0 ; i< updateButtons.length ; i++){
+    updateButtons[i].onclick = updateItem;
+}
