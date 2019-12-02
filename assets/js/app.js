@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     arrayUsers.forEach(user => {
        // var ruta= arregloImagenes[posicion].src;
 
-      html += `<div class="card col-md-3" data-card-name="${user.name}">`;
+      html += `<div class="card col-md-4" data-card-name="${user.name}">`;
       html += `<div class="card-text">${user.name}</div>`;
-      html+= `<img  class="card-img-top" src =${imageArray[0].src}>`
+      html+= `<a href="netflix.html"><img  class="card-img-top" src =${imageArray[0].src}></a>`
       html += `</div>`;
     });
 
