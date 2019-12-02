@@ -60,7 +60,33 @@ function createUser(){
    arrayUsers.push(newUser);
 }
 
+function updateUser(){
+    let users = document.getElementById("users");
+    let newUser;
+    arrayUsers.forEach(user =>{
+     newUser = document.createElement('div');
+    newUser.classList.add('row');
+    newUser.innerHTML = `
+        <div class= "col-md-6">
+        <div class="userName">Name: ${user.name}</div>
+        <div class="nickName"> NickName: ${user.nickName}</div>
+        <div>
+            <button type='button' class='btn btn-danger delete'>Delete</button>
+        </div>
+        </div>
+    `;
+    users.appendChild(newUser);
+
+    console.log(newUser)
+    })
+    
+
+}
 
 $( "#createUser" ).click(function() {
     createUser();
+});
+
+$( "#updateUser" ).click(function() {
+    updateUser();
 });
