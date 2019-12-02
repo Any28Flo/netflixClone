@@ -55,7 +55,6 @@ function createUser(){
     let nick = $("#nickName")
     let nickName = nick[0].value;
 
-    console.log()
    let newUser = new User(userName, nickName);
    arrayUsers.push(newUser);
 }
@@ -66,27 +65,40 @@ function updateUser(){
     arrayUsers.forEach(user =>{
      newUser = document.createElement('div');
     newUser.classList.add('row');
+    newUser.classList.add('newUSer');
     newUser.innerHTML = `
         <div class= "col-md-6">
         <div class="userName">Name: ${user.name}</div>
         <div class="nickName"> NickName: ${user.nickName}</div>
         <div>
-            <button type='button' class='btn btn-danger delete'>Delete</button>
+            <button type='button' class='btn btn-danger btn-delete'>Delete</button>
         </div>
         </div>
     `;
     users.appendChild(newUser);
-
-    console.log(newUser)
     })
-    
-
 }
 
+// Iteration 4
+function deleteItem(e){
+    let buttonClicked = e.currentTarget;
+    let productsContainer = document.getElementById('users');
+    let product = buttonClicked.parentElement.parentElement;
+    productsContainer.removeChild(product);
+  
+    getTotalPrice();
+  };
 $( "#createUser" ).click(function() {
     createUser();
 });
 
 $( "#updateUser" ).click(function() {
-    updateUser();
+   
 });
+
+updateUser();
+var deleteButtons = document.getElementsByClassName('btn-delete');
+
+for(var i = 0; i<deleteButtons.length ; i++){
+    deleteButtons[i].onclick = deleteItem;
+  };
