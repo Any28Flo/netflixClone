@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
  // Add all the divs to the HTML
-document.querySelector('.containerProfiles').innerHTML = html;
+//document.querySelector('.containerProfiles').innerHTML = html;
 })
 
 let user1 = new User( "Antonio" , "ant" , "./assets/profile.png");
@@ -46,8 +46,6 @@ arrayUsers.push(user2);
 
 arrayUsers.push(user3);
 
-//console.log(arrayUsers);
-
 function createUser(){
 
     let name= $("#nameUser");
@@ -57,7 +55,9 @@ function createUser(){
 
    let newUser = new User(userName, nickName);
    arrayUsers.push(newUser);
+   alert('You are creating a new user successfully')
    listUsers();
+   clearInput();
    
 }
 
@@ -80,13 +80,21 @@ function listUsers(){
     users.appendChild(newUser);
     })
 }
-
+function clearInput(){
+    let inputCollection = document.getElementsByClassName('inputData');
+  
+    for (i = 0; i < inputCollection.length; i++){
+      let input = inputCollection[i];
+      input.value = '';
+    };
+  };
+  
 function deleteItem(e){
     let buttonClicked = e.currentTarget;
     let userContainer = document.getElementById('users');
     
-    let product = buttonClicked.parentElement.parentElement.parentElement;
-    userContainer.removeChild(product);
+    let user = buttonClicked.parentElement.parentElement.parentElement;
+    userContainer.removeChild(user);
   };
 $( "#createUser" ).click(function() {
     createUser();
@@ -102,4 +110,5 @@ var deleteButtons = document.getElementsByClassName('btn-delete');
 
 for(var i = 0; i<deleteButtons.length ; i++){
     deleteButtons[i].onclick = deleteItem;
+
   };
